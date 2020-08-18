@@ -1,5 +1,5 @@
 
-//Program to implement Project Euler Even Fibonacci numbers in python 
+# Program to implement Project Euler Even Fibonacci numbers in python 
 import sys
 def even_fibo(n):
     l=[1,1]
