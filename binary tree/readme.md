@@ -8,4 +8,5 @@
 * [x]  Min depth of the Binary tree 
 * [x]  Evalutaing a Binary tree Expression 
 * [x]  Skewed Binary tree 
+* [x]  Root to Leaf Nodes paths
 
