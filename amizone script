@@ -1,0 +1,10 @@
+
+#use this script for amizone feedback rating == very good 
+
+for(var i = 0;i<(5*25);i+=5) {
+	document.getElementsByClassName("ace")[i].checked=true
+}
+for(var i = 125;i<131;i+=2) {
+document.getElementsByClassName("ace")[i].checked=true
+}
+document.getElementById("FeedbackRating_Comments").value="very good !"
