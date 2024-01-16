@@ -29,6 +29,21 @@ def hasCycle(head):
             return True 
     else:
         return False 
+    
+# Leet Code Problem 2965 Find Missing and Repeated Values
+def findMissingAndRepeatedValues(grid):
+    c = {}
+    a = b = None
+    for row in range(len(grid)):
+        for col in range(len(grid[0])):
+            c[grid[row][col]] = c.get(grid[row][col],0) + 1
+    for i in range(1,len(grid)*len(grid[0])+1):
+        if i in c and c[i] == 2:
+            a = i 
+        elif i not in c:
+            b = i 
+        if a and b:
+            return [a,b]
 
 # Leet Code Problem 190 Reverse Bits
 def reverseBits(n):
