@@ -1,3 +1,31 @@
+# 671 Second Minimum Node in a Binary Tree 
+def findSecondMinimumValue(root):
+    res = []
+    def f(r):
+        if r == None:
+            return 
+        f(r.left)
+        res.append(r.val)
+        f(r.right)
+    f(root)
+    res.sort()
+    i = 1 
+    while i < len(res):
+        if res[i-1] == res[i]:
+            i += 1
+        else:
+            return res[i]
+    return -1
+
+# 1886 Determine if Matrix Can Be Obtained by Rotation 
+def findRotation(mat, target):
+    for _ in range(4):
+        if mat == target:
+            return True 
+        else:
+            mat = [list(y) for y in zip(*mat[::-1])]
+    return False
+
 # Leet Code Problem 13 Roman to Integer
 def romanToInt(s):
     chart = {
