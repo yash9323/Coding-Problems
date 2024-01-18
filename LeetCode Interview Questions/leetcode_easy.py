@@ -1,3 +1,43 @@
+# 1071 Greatest Common Divisior of Strings 
+def gcdOfStrings(str1, str2):
+    if str1 + str2 != str2 + str1:
+        return ""
+    gcd = 1 
+    a,b = len(str1), len(str2)
+    for i in range(min(a,b),0,-1):
+        if a % i == 0 and b % i == 0:
+            gcd = i 
+            return str2[:gcd]
+    return str1[:gcd]
+        
+#509 Fibonacci Number 
+def fib(n):
+    if n < 2:
+        return n
+    dp = [-1] * (n+1)
+    dp[0] = 0
+    dp[1] = 1
+    for i in range(2,n+1):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+
+# 2960 Count Testted Devices After Test Operation 
+def countTestedDevices(batteryPercentages):
+    tested_devices = 0 
+    for i in range(len(batteryPercentages)):
+        if batteryPercentages[i] > 0:
+            tested_devices += 1
+            for j in range(i+1,len(batteryPercentages)):
+                batteryPercentages[j] = max(0,batteryPercentages[j] - 1)
+    return tested_devices
+
+# 1920 Build Array From Permutation 
+def buildArray(nums):
+    res = [0] * len(nums)
+    for i,n in enumerate(nums):
+        res[i] = nums[n]
+    return res
+
 # 671 Second Minimum Node in a Binary Tree 
 def findSecondMinimumValue(root):
     res = []
