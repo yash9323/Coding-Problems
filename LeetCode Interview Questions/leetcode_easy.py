@@ -1,3 +1,93 @@
+# 1652 Defuse the Bomb 
+def decrypt(code, k):
+    c = []
+    if k > 0:
+        for i in range(len(code)):
+            s = 0 
+            z = 0
+            xx = i 
+            while z < abs(k):
+                xx = (xx + 1) % len(code)
+                s += code[xx]
+                z += 1
+            c.append(s)
+        return c
+    elif k < 0:
+        for i in range(len(code)):
+            s = 0 
+            z = 0
+            xx = i 
+            while z < abs(k):
+                xx = (xx - 1) if xx - 1 >= 0 else (len(code)-1)
+                s += code[xx]
+                z+=1 
+            c.append(s)
+        return c
+    else:
+        return [0 for _ in range(len(code))]
+
+# 2022 Convert 1D Array into 2D Array 
+def construct2DArray(original, m, n):
+    if len(original) != (m*n): return []
+    else:
+        i = 0 
+        r = []
+        while i < len(original):
+            r.append(original[i:i+n])
+            i = i + n
+        return r
+
+# 1748 Sum of Unique Elements 
+def sumOfUnique(nums):
+    d = {}
+    for i in nums:
+        d[i] = d.get(i,0) + 1
+    return sum([x for x in d if d[x] == 1])
+
+# 482 License Key Formatting 
+def licenseKeyFormatting(s, k):
+    c = ''.join(s.upper().split("-"))
+    x = len(c) % k
+    r = ""
+    i = 0
+    if x == 0:
+        while i < len(c):
+            r += c[i:i+k] + "-"
+            i = i + k 
+        return r[:-1]
+    else:
+        r += c[:x] + "-"
+        i = x
+        while i < len(c):
+            r += c[i:i+k] + "-"
+            i = i + k 
+        return r[:-1]
+
+# 1624 Largest Substring Betwene two Equal Characters 
+def maxLengthBetweenEqualCharacters(s):
+    d = {}
+    a = -1
+    for i,v in enumerate(s):
+        if v in d:
+            a = max(a,i-d[v]-1)
+        else:
+            d[v] = i
+    return a
+
+# 3010 Divide an Array into Subarrays with Min Cost 1
+def minimumCost(nums):
+    return nums[0] + sum(sorted(nums[1:])[:2])
+
+# 1331 Rank Transform of an Array 
+def arrayRankTransform(arr):
+    a = sorted(set(arr))
+    d = {}
+    i = 1
+    for n in a:
+        d[n] = i 
+        i+=1 
+    return [d[i] for i in arr]
+
 # 1071 Greatest Common Divisior of Strings 
 def gcdOfStrings(str1, str2):
     if str1 + str2 != str2 + str1:
