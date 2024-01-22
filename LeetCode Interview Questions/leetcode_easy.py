@@ -1,3 +1,89 @@
+from NeetCode.link_list_solutions import ListNode
+from NeetCode.trees_solutions import TreeNode
+
+# 2873 Maximum Value of an Ordered Triplet 
+def maximumTripletValue(nums):
+    r = 0
+    for i in range(len(nums)-2):
+        for j in range(i+1,len(nums)):
+            for k in range(j+1,len(nums)):
+                r = max(r,(nums[i]-nums[j])*nums[k])
+    return r   
+
+# 2465 Number of Distinct Averages
+def distinctAverages(n):
+    r = {}
+    i, j = 0, len(n) - 1
+    n = sorted(n)
+    while i <= j:
+        r[ n[i] + n[j] ] = 1
+        i += 1
+        j -= 1
+    return len(r)
+
+# 2784 Check if Array is Good 
+def isGood(nums):
+    n = sorted(nums)
+    if len(n) == 1:
+        return False
+    return n[-1] == n[-2] and len(set(nums)) == (len(n) - 1) and len(n) == (max(n) + 1)
+
+# 830 Postitions of Large Groups 
+def largeGroupPositions(s):
+    i = 0 
+    r = []
+    while i < len(s):
+        ss = i 
+        while (i+1) < len(s) and s[i] == s[i+1]:
+            i += 1
+        if i - ss >= 2:
+            r.append([ss,i])
+        if i == ss:
+            i += 1
+    return r
+
+# 645 Set MisMatch 
+def findErrorNums(nums):
+    l = len(nums)
+    d = {}
+    for i in nums:
+        if i in d:
+            r = i 
+        d[i] = 1
+    z = int((l*(l+1)/2)-sum(d.keys()))
+    return [r,z]
+
+# 1356 Sort Integers by the Number of 1 Bits
+def sortByBits(arr):
+    def merge(a,b):
+        r = []
+        i = j = 0 
+        while i < len(a) and j < len(b):
+            if a[i].bit_count() < b[j].bit_count():
+                r.append(a[i])
+                i += 1
+            elif a[i].bit_count() > b[j].bit_count():
+                r.append(b[j])
+                j += 1
+            else:
+                if a[i] < b[j]:
+                    r.append(a[i])
+                    i += 1
+                else:
+                    r.append(b[j])
+                    j += 1
+        r.extend(a[i:])
+        r.extend(b[j:])
+        return r 
+    def merge_sort(a):
+        if len(a) == 1:
+            return a
+        m = len(a) // 2
+        l = merge_sort(a[:m])
+        r = merge_sort(a[m:])
+        return merge(l,r)
+    return merge_sort(arr)
+
 # 1652 Defuse the Bomb 
 def decrypt(code, k):
     c = []

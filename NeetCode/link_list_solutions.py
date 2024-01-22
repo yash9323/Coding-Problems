@@ -10,7 +10,14 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-        
+
+class DNode:
+    def __init__(self,key,val):
+        self.k = key 
+        self.v = val 
+        self.n = None 
+        self.p = None 
+    
 # 206 Reverse a Link List 
 def reverseList(head):
     p = None
@@ -190,3 +197,52 @@ def mergeKLists(lists):
 
     return lists[0] 
 
+# 25 Reverse Nodes in k-Group 
+def reverseKGroup(h, k):
+    c = h 
+    i = 0 
+    while i < k:
+        if not c: return h
+        c = c.next 
+        i += 1
+    p = None
+    c = h 
+    i = 0 
+    while i < k:
+        n = c.next 
+        c.next = p 
+        p = c
+        c = n 
+        i += 1
+    h.next = reverseKGroup(c,k)
+    return p
+
+# 146 Lru Cache 
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.c = capacity 
+        self.cc = {}
+        self.lru, self.mru = DNode(0,0), DNode(0,0)
+        self.lru.n, self.mru.p = self.mru, self.lru 
+    def rlru(self,n):
+        pp,nn = n.p, n.n 
+        pp.n, nn.p = nn, pp
+    def imru(self,n):
+        prev, nn = self.mru.p, self.mru
+        prev.n,nn.p = n,n 
+        n.n ,n.p  =  nn, prev
+    def get(self, k: int) -> int:
+        if k in self.cc:
+            self.rlru(self.cc[k]) 
+            self.imru(self.cc[k]) 
+            return self.cc[k].v 
+        return -1
+    def put(self, key: int, value: int) -> None:
+        if key in self.cc:
+            self.rlru(self.cc[key])
+        self.cc[key] = DNode(key,value)
+        self.imru(self.cc[key])
+        if len(self.cc) > self.c:
+            l = self.lru.n 
+            self.rlru(l)
+            del self.cc[l.k]

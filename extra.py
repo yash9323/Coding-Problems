@@ -23,7 +23,7 @@ subsetSum(S,[],k,0)
 
 
 class Node:
-      def __init__(self,val, left=None, right=None):
+    def __init__(self,val, left=None, right=None):
         self.value = val 
         self.left = left 
         self.right = right
@@ -133,50 +133,3 @@ def f(x):
     while h:
         print(h.val)
         h = h.next
-
-m = 2
-n = 2
-a = [1,2,3,4]
-if len(a) != m*n:
-    pass # Return []
-else:
-    i = 0 
-    r = []
-    while i < len(a):
-        r.append(a[i:i+n])
-        i = i + n
-
-
-code = [2,4,9,3]
-k = -2
-
-if k == 0:
-    # return [0] * len(code)
-    pass
-if k > 0:
-    c = []
-    for i in range(len(code)):
-        s = 0 
-        z = 0
-        xx = i 
-        while z < abs(k):
-            xx = (xx + 1) % len(code)
-            s += code[xx]
-            z += 1
-        c.append(s)
-    print(c)
-if k < 0:
-    c = []
-    for i in range(len(code)):
-        s = 0 
-        z = 0
-        xx = i 
-        while z < abs(k):
-            if xx-1 < 0:
-                xx = len(code) - 1
-            else:
-                xx = xx - 1
-            s += code[xx]
-            z+=1 
-        c.append(s)
-    print(c)
