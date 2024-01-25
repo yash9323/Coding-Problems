@@ -1,6 +1,31 @@
 from NeetCode.link_list_solutions import ListNode
 from NeetCode.trees_solutions import TreeNode
 
+# 504 Base 7 
+def convertToBase7(num):
+    n,s = abs(num),''
+    while n:
+        n,r = divmod(n,7)
+        s = str(r) + s
+    return '-' * (num < 0) + s if s else '0'
+
+# Toeplitz Matrix 
+def isToeplitzMatrix(matrix):
+    for r in range(len(matrix)-1):
+        for c in range(len(matrix[0])-1):
+            if matrix[r][c] != matrix[r+1][c+1]:
+                return False
+    return True 
+
+# 2710 Remove Trailing Zeros From a String 
+def removeTrailingZeros(num):
+    i = len(num) - 1
+    while i >= 0:
+        if num[i] == "0":
+            i-=1
+        else:
+            return num[:i+1]
+
 # 2873 Maximum Value of an Ordered Triplet 
 def maximumTripletValue(nums):
     r = 0
