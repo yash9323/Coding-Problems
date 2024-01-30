@@ -17,10 +17,19 @@ def subsetSum(Array,res,total,index):
         return subsetSum(Array,res,total,index+1)
     return subsetSum(Array, res+[Array[index]], total - Array[index], index+1) or subsetSum(Array, res, total, index+1)
 
-S = [12, 1, 61, 5, 9, 2]
-k = 24
-subsetSum(S,[],k,0)
+'''
+Good morning! Here's your coding interview problem for today.
 
+This problem was asked by Facebook.
+
+Given an N by N matrix, rotate it by 90 degrees clockwise.
+'''
+def rotate_matrix(m):
+    m.reverse()
+    for r in range(len(m)):
+        for c in range(r+1,len(m[0])):
+            m[r][c],m[c][r] = m[c][r],m[r][c]
+    return m
 
 class Node:
     def __init__(self,val, left=None, right=None):
@@ -134,3 +143,13 @@ def f(x):
         print(h.val)
         h = h.next
 
+
+def f(x):
+    r = 0 
+    while x:
+        print(x%10)
+        r = (r*10)  + x % 10 
+        x //= 10 
+    print(r)
+
+f(123)

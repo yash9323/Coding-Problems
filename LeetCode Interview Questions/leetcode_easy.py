@@ -1,6 +1,43 @@
 from NeetCode.link_list_solutions import ListNode
 from NeetCode.trees_solutions import TreeNode
 
+# 232 Implement Queue using Stacks 
+class MyQueue:
+    def __init__(self):
+        self.s,self.ss = [],[]
+    def push(self, x: int) -> None:
+        while self.s: self.ss.append(self.s.pop())
+        self.s.append(x)
+        while self.ss: self.s.append(self.ss.pop())
+    def pop(self) -> int: 
+        return self.s.pop()
+    def peek(self) -> int: 
+        return self.s[-1]
+    def empty(self) -> bool: 
+        return len(self.s) == 0
+
+# 2399 Check Distance Between Same Letters 
+def checkDistances(s, distance):
+    d = {}
+    for i,v in enumerate(s):
+        if v not in d:
+            d[v] = i 
+        else:
+            d[v] = i - d[v] - 1
+    for k in d:
+        i = ord(k) - ord('a')
+        if distance[i] != d[k] : return False
+    return True
+
+# 1684 Count the Number of Consistent Strings 
+def countConsistentStrings(a, words):
+    a = set(a)
+    r = 0 
+    for w in words:
+        if len(a.union(set(w))) == len(set(a)):
+            r += 1
+    return r
+
 # 504 Base 7 
 def convertToBase7(num):
     n,s = abs(num),''
